@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "bc31d3dcf757fc293b9517639cdc75a4c474513ba145cd7a81d7e88e90c53530"
+            "sha256": "6765efda730b9e4d3c2b808da481b34482507f56c05cdebd5b50aa50a48fd08a"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -24,6 +24,15 @@
             "markers": "python_version >= '3.8'",
             "version": "==3.8.1"
         },
+        "channels": {
+            "hashes": [
+                "sha256:8d7208e48ab8fdb972aaeae8311ce920637d97656ffc7ae5eca4f93f84bcd9a0",
+                "sha256:ff36a6e1576cacf40bcdc615fa7aece7a709fc4fdd2dc87f2971f4061ffdaa81"
+            ],
+            "index": "pypi",
+            "markers": "python_version >= '3.8'",
+            "version": "==4.2.2"
+        },
         "django": {
             "hashes": [
                 "sha256:1a47f7a7a3d43ce64570d350e008d2949abe8c7e21737b351b6a1611277c6d89",
@@ -42,6 +51,23 @@
             "markers": "python_version >= '3.9'",
             "version": "==5.1.0"
         },
+        "djangorestframework": {
+            "hashes": [
+                "sha256:bea7e9f6b96a8584c5224bfb2e4348dfb3f8b5e34edbecb98da258e892089361",
+                "sha256:f022ff46613584de994c0c6a4aebbace5fd700555fbe9d33b865ebf173eba6c9"
+            ],
+            "markers": "python_version >= '3.9'",
+            "version": "==3.16.0"
+        },
+        "djangorestframework-simplejwt": {
+            "hashes": [
+                "sha256:474a1b737067e6462b3609627a392d13a4da8a08b1f0574104ac6d7b1406f90e",
+                "sha256:4ef6b38af20cdde4a4a51d1fd8e063cbbabb7b45f149cc885d38d905c5a62edb"
+            ],
+            "index": "pypi",
+            "markers": "python_version >= '3.9'",
+            "version": "==5.5.0"
+        },
         "mysqlclient": {
             "hashes": [
                 "sha256:199dab53a224357dd0cb4d78ca0e54018f9cee9bf9ec68d72db50e0a23569076",
@@ -56,6 +82,14 @@
             "index": "pypi",
             "markers": "python_version >= '3.8'",
             "version": "==2.2.7"
+        },
+        "pyjwt": {
+            "hashes": [
+                "sha256:3b02fb0f44517787776cf48f2ae25d8e14f300e6d7545a4315cee571a415e850",
+                "sha256:7e1e5b56cc735432a7369cbfa0efe50fa113ebecdc04ae6922deba8b84582d0c"
+            ],
+            "markers": "python_version >= '3.8'",
+            "version": "==2.9.0"
         },
         "sqlparse": {
             "hashes": [

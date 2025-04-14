@@ -24,6 +24,9 @@ urlpatterns = [
     path('user/', include('user.urls')),  # اضافه کردن مسیرهای اپ User
     path('group/', include('group.urls')),
     path('tour/', include('tour.urls')),
+    path('chat/', include('chat.urls')),
+    path('notification/', include('notification.urls')),
+    path('payment/', include('payment.urls')),
 ]+ debug_toolbar_urls()
 
 

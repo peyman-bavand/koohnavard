@@ -18,12 +18,24 @@ class Tour(models.Model):
     location = models.CharField(max_length=255)
     group = models.ForeignKey(Group, on_delete=models.CASCADE)
 
+
+# tour/models.py
+
+from django.db import models
+from django.conf import settings
+from .models import Tour  # مدل تور
+
+
+
 class TourBooking(models.Model):
-    tour = models.ForeignKey(Tour, on_delete=models.CASCADE)
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    tour = models.ForeignKey(Tour, on_delete=models.CASCADE)
     booking_date = models.DateTimeField(auto_now_add=True)
-    payment_status = models.CharField(max_length=20, choices=[('Paid', 'Paid'), ('Pending', 'Pending')])
-    status = models.CharField(max_length=20, choices=[('Registered', 'Registered'), ('Cancelled', 'Cancelled')])
+
+    def __str__(self):
+        return f"{self.user.username} - {self.tour.title}"
+
+
 
 class TourReview(models.Model):
     tour = models.ForeignKey(Tour, on_delete=models.CASCADE)
@@ -31,3 +43,4 @@ class TourReview(models.Model):
     rating = models.PositiveIntegerField(choices=[(1, '1'), (2, '2'), (3, '3'), (4, '4'), (5, '5')])
     comment = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
+ 

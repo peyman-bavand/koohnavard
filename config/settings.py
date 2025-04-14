@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'debug_toolbar',
     'rest_framework',
+    'channels',
     'user',
     'group',
     'tour',
@@ -142,3 +143,25 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 AUTH_USER_MODEL = 'user.CustomUser'  # فرض کنید که مدل شما در اپلیکیشن user قرار دارد
+
+ASGI_APPLICATION = "config.asgi.application"
+
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': 'channels_redis.core.RedisChannelLayer',
+        'CONFIG': {
+            "hosts": [("127.0.0.1", 6379)],
+        },
+    },
+}
+
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ],
+}
+
+
+# settings.py
+ZARINPAL_MERCHANT_ID = 'xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx'  # مقدار واقعی در اینجا
