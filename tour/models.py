@@ -3,9 +3,11 @@ from django.conf import settings
 from group.models import Group
 
 
+
 class TourCategory(models.Model):
     name = models.CharField(max_length=100)
     description = models.TextField()
+    
 
 class Tour(models.Model):
     title = models.CharField(max_length=100)
@@ -17,14 +19,6 @@ class Tour(models.Model):
     category = models.ForeignKey(TourCategory, on_delete=models.CASCADE)
     location = models.CharField(max_length=255)
     group = models.ForeignKey(Group, on_delete=models.CASCADE)
-
-
-# tour/models.py
-
-from django.db import models
-from django.conf import settings
-from .models import Tour  # مدل تور
-
 
 
 class TourBooking(models.Model):
@@ -43,4 +37,5 @@ class TourReview(models.Model):
     rating = models.PositiveIntegerField(choices=[(1, '1'), (2, '2'), (3, '3'), (4, '4'), (5, '5')])
     comment = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
+
  

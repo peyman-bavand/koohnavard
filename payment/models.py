@@ -18,3 +18,4 @@ class PaymentItem(models.Model):
     payment = models.ForeignKey(Payment, on_delete=models.CASCADE)
     tour = models.ForeignKey(Tour, on_delete=models.CASCADE)
     amount = models.DecimalField(max_digits=10, decimal_places=2)
+ 

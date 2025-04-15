@@ -27,3 +27,4 @@ class TourChatMessage(models.Model):
 
     def __str__(self):
         return f"Tour {self.tour.id} - {self.sender.username}: {self.message[:30]}"
+    
