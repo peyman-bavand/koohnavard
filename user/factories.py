@@ -2,7 +2,7 @@ import factory
 from factory.django import DjangoModelFactory
 from faker import Faker
 from django.contrib.auth.models import Group, Permission
-from back.apps.user.models import CustomUser, UserProfile, NotificationSettings
+from user.models import CustomUser, UserProfile, NotificationSettings
 
 faker = Faker('fa_IR')
 

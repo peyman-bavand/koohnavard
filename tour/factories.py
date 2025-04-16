@@ -25,7 +25,7 @@ class TourFactory(DjangoModelFactory):
 
     title = factory.Faker('sentence', nb_words=3)
     description = factory.Faker('paragraph')
-    leader = factory.SubFactory('user.factories.UserFactory')  # اگه UserFactory جای دیگه ساختی
+    leader = factory.SubFactory('user.factories.CustomUserFactory ')  # اگه CustomUserFactory  جای دیگه ساختی
     start_date = factory.LazyFunction(lambda: timezone.now().date())
     end_date = factory.LazyFunction(lambda: (timezone.now() + timedelta(days=5)).date())
     price = factory.Faker('pydecimal', left_digits=5, right_digits=2, positive=True)
@@ -38,7 +38,7 @@ class TourBookingFactory(DjangoModelFactory):
     class Meta:
         model = TourBooking
 
-    user = factory.SubFactory('user.factories.UserFactory')
+    user = factory.SubFactory('user.factories.CustomUserFactory ')
     tour = factory.SubFactory(TourFactory)
     booking_date = factory.LazyFunction(timezone.now)
 
@@ -48,7 +48,7 @@ class TourReviewFactory(DjangoModelFactory):
         model = TourReview
 
     tour = factory.SubFactory(TourFactory)
-    user = factory.SubFactory('user.factories.UserFactory')
+    user = factory.SubFactory('user.factories.CustomUserFactory ')
     rating = factory.Iterator([1, 2, 3, 4, 5])
     comment = factory.Faker('paragraph')
     created_at = factory.LazyFunction(timezone.now)
