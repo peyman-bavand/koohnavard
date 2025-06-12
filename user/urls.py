@@ -1,15 +1,22 @@
 from django.urls import path
-from .views import UserSignupView, UserLoginView, UserProfileView, UserProfileEditView, NotificationSettingsView, NotificationSettingsEditView
+from .views import UserSignUpView, UserLoginView, UserProfileView, UserProfileEditView, NotificationSettingsView, NotificationSettingsEditView
+from rest_framework_simplejwt.views import (
+    TokenObtainPairView,
+    TokenRefreshView,
+) 
+
 
 urlpatterns = [
-    path('signup/', UserSignupView.as_view(), name='user_signup'),
+    path('signup/', UserSignUpView.as_view(), name='user_signup'),
     path('login/', UserLoginView.as_view(), name='user_login'),
     path('profile/', UserProfileView.as_view(), name='user_profile'),
     path('profile/edit/', UserProfileEditView.as_view(), name='user_profile_edit'),
     path('notifications/', NotificationSettingsView.as_view(), name='notification_settings'),
     path('notifications/edit/', NotificationSettingsEditView.as_view(), name='notification_settings_edit'),
+    path('login/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('refresh/', TokenRefreshView.as_view(), name='token_refresh'),
 ]
-
+ 
 
 #signup: این مسیر به صفحه ثبت‌نام کاربر هدایت می‌کند.
 #login: این مسیر به صفحه ورود کاربر هدایت می‌کند.

@@ -14,10 +14,13 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+import debug_toolbar
 from django.contrib import admin
 from django.urls import path, include
 from debug_toolbar.toolbar import debug_toolbar_urls
-
+from drf_spectacular.views import SpectacularAPIView, SpectacularSwaggerView, SpectacularRedocView
+from . import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -27,7 +30,18 @@ urlpatterns = [
     path('chat/', include('chat.urls')),
     path('notification/', include('notification.urls')),
     path('payment/', include('payment.urls')),
-]+ debug_toolbar_urls()
+
+    
+    # url های drf-spectacular
+    path('schema/', SpectacularAPIView.as_view(), name='schema'),
+    # رابط کاربری Swagger UI
+    path('swagger/', SpectacularSwaggerView.as_view(url_name='schema'), name='swagger-ui'),
+    # رابط کاربری ReDoc
+    path('redoc/', SpectacularRedocView.as_view(url_name='schema'), name='redoc'),
+
+    path('__debug__/', include(debug_toolbar.urls)),
+
+]  + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 
 

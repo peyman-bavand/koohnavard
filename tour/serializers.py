@@ -1,24 +1,36 @@
 # tour/serializers.py
 
 from rest_framework import serializers
-from .models import Tour, TourBooking, TourReview
+from .models import Tour, TourBooking, TourReview, TourCategory
 from django.contrib.auth import get_user_model
 from group.models import Group
-from .models import TourCategory
 from rest_framework import serializers
 # Serializer برای مدل تور
 
 
 
+class TourCategorySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = TourCategory
+        fields = ['id', 'name', 'description']
+
+
 class TourSerializer(serializers.ModelSerializer):
-    leader = serializers.PrimaryKeyRelatedField(queryset=get_user_model().objects.all())
-    group = serializers.PrimaryKeyRelatedField(queryset=Group.objects.all())
+    leader = serializers.PrimaryKeyRelatedField(read_only=True)
+    group = serializers.PrimaryKeyRelatedField(read_only=True)
     category = serializers.PrimaryKeyRelatedField(queryset=TourCategory.objects.all())
 
     class Meta:
         model = Tour
-        fields = ['id', 'title', 'description', 'leader', 'start_date', 'end_date', 'price', 'category', 'location', 'group']
+        fields = [
+            'id', 'title', 'description', 'leader',
+            'start_date', 'end_date', 'price',
+            'category', 'location', 'group'
+        ]
 
+
+
+   
 # Serializer برای مدل ثبت‌نام در تور
 class TourBookingSerializer(serializers.ModelSerializer):
     class Meta:
@@ -37,8 +49,34 @@ class TourReviewSerializer(serializers.ModelSerializer):
         fields = ['id', 'tour', 'user', 'rating', 'comment', 'created_at']
 
 
-# tour/serializers.py
 
 
+######################################این مجموعه سریالایزر برای استفاده در کامپوننت tour detail ساخته شدند
+# serializers.py
+
+class SimpleUserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = get_user_model()
+        fields = ['id', 'username', 'email']
+
+
+class GroupSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Group
+        fields = ['id', 'name']
+
+
+class TourDetailSerializer(serializers.ModelSerializer):
+    leader = SimpleUserSerializer(read_only=True)
+    group = GroupSerializer(read_only=True)
+    category = TourCategorySerializer(read_only=True)
+
+    class Meta:
+        model = Tour
+        fields = [
+            'id', 'title', 'description', 'leader',
+            'start_date', 'end_date', 'price',
+            'category', 'location', 'group'
+        ]
 
 

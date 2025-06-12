@@ -24,8 +24,14 @@ class UserProfile(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
+    def __str__(self):
+        return f"{self.user.first_name} {self.user.last_name}"
+
 class NotificationSettings(models.Model):
     user = models.OneToOneField(CustomUser, on_delete=models.CASCADE)
     email_notifications = models.BooleanField(default=True)
     push_notifications = models.BooleanField(default=True)
     sms_notifications = models.BooleanField(default=False)
+
+    def __str__(self):
+        return f"{self.user.first_name} {self.user.last_name}"
